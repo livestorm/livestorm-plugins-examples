@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/livestorm/livestorm-plugin/dist/assets/css/style.css">
+
+
+<style type="text/css">
+    body {
+        padding: 20px;
+    }
+
+    .ls-input.error {
+        border-color: var(--color-red-500)
+    }
+</style>
+
+<script type="text/javascript">
+    let figmaIframeElement
+    let figmaVideoElement
+    let inputElement
+    let url
+
+    const setInputListener = () => {
+        inputElement.addEventListener('keyup', event => {
+            url = event.target.value
+
+            figmaIframeElement.setAttribute('src', `https://www.figma.com/embed?embed_host=share&url=${url}`)
+
+            figmaVideoElement.style.display = !url ? "" : "none"
+            figmaIframeElement.style.display = url ? "" : "none"
+        })
+    }
+
+    const setButtonsListener = () => {
+        const buttonCancelElement = document.getElementById('cancel')
+        const formElement = document.querySelector('form')
+
+        buttonCancelElement.addEventListener('click', () => {
+            closeModal()
+        })
+        formElement.addEventListener('submit', e => {
+            e.preventDefault()
+
+            if (!url) {
+                inputElement.focus()
+                return 
+            }
+
+            postMessage({
+                iframe: `<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="100%" src="https://www.figma.com/embed?embed_host=share&url=${url}" allowfullscreen></iframe>`
+            })
+            closeModal()
+        })
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        figmaIframeElement = document.getElementById('figmaIframe')
+        figmaVideoElement = document.getElementById('figmaVideo')
+        inputElement = document.getElementById('url')
+
+        figmaIframeElement.style.height = figmaVideoElement.getBoundingClientRect().height + 'px'
+
+        setInputListener()
+        setButtonsListener()
+    })
+</script>
+
+<div style="display: flex;">
+    <div style="width: 56px; margin-right: 16px;">
+        <div style="display: flex; justify-content: center; align-items: center;border-radius: 360px; background: black; height: 56px;">
+            <svg style="width: 24px; height: 24px;" width="288" height="432" viewBox="0 0 288 432" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="95.0226" height="142.534" fill="black" fill-opacity="0" transform="translate(1.46603 2.19946) scale(3)"/>
+                <path d="M144 216C144 176.641 175.907 144.733 215.267 144.733V144.733C254.626 144.733 286.534 176.641 286.534 216V216C286.534 255.36 254.626 287.267 215.267 287.267V287.267C175.907 287.267 144 255.36 144 216V216Z" fill="#1ABCFE"/>
+                <path d="M1.46603 358.534C1.46603 319.175 33.3733 287.267 72.733 287.267H144V358.534C144 397.894 112.093 429.801 72.733 429.801V429.801C33.3733 429.801 1.46603 397.894 1.46603 358.534V358.534Z" fill="#0ACF83"/>
+                <path d="M144 2.19946V144.733H215.267C254.627 144.733 286.534 112.826 286.534 73.4664V73.4664C286.534 34.1068 254.627 2.19946 215.267 2.19946L144 2.19946Z" fill="#FF7262"/>
+                <path d="M1.46603 73.4664C1.46603 112.826 33.3733 144.733 72.733 144.733L144 144.733L144 2.19941L72.733 2.19941C33.3733 2.19941 1.46603 34.1067 1.46603 73.4664V73.4664Z" fill="#F24E1E"/>
+                <path d="M1.46603 216C1.46603 255.36 33.3733 287.267 72.733 287.267H144L144 144.733L72.733 144.733C33.3733 144.733 1.46603 176.641 1.46603 216V216Z" fill="#A259FF"/>
+            </svg>
+        </div>
+    </div>
+    <div style="flex: 1;display: grid;grid-gap: 12px;">
+        <h1 class="ls-text-20-semibold" style="color: var(--color-grey-800);">{{ title }}</h1>
+        <p>{{ description }}</p>
+        
+        <form class="ls-form">
+            <div>
+                <input required id="url" class="ls-input" type="text" placeholder="https://www.figma.com/...">
+            </div>
+        
+            <div>
+                <video style="width: 100%; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 8px;" id="figmaVideo" playsinline="" webkit-playsinline="" autoplay="true" preload="auto" class="target" src="https://cdn.ireland.production.livestorm.io/dist/media/tuto-figma.23f761be.mp4"></video>
+                <iframe style="width: 100%; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 8px; display:none;" id="figmaIframe"  src="" allowfullscreen></iframe>
+            </div>
+
+            <div class="ls-warning-message ls-warning-info align-left">
+                <svg style="flex-shrink: 0;" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line stroke-width="2" x1="12" y1="16" x2="12" y2="12"></line>
+                    <line stroke-width="2" x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <div>{{ warning }}</div>
+            </div>
+        
+            <div style="display: flex; justify-content: flex-end;">
+                <button id="cancel" type="button" class="ls-button ls-button-tertiary" style="margin-right: 16px;">{{ cancel }}</button>
+                <button id="validate" type="submit" class="ls-button ls-button-primary">{{ share }}</button>
+            </div>
+        </form>
+    </div>
+</div>
