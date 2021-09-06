@@ -11,6 +11,7 @@ Share a Figma file to the stage.
 ### `Stage.Buttons.registerShareButton`
 
 First, the plugin adds a button in the share dropdown of the stage.
+
 Find out more about this API [here](https://developers.livestorm.co/docs/stage).
 
 #### `Modal.showIframe`
