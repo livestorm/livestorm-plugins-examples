@@ -4,6 +4,8 @@ import i18n from './i18n'
 const figmaModal = require('./figma.html').default
 const messages = i18n()
 
+const logoFigma = 'https://cdn.worldvectorlogo.com/logos/figma-1.svg'
+
 export default function(): void {
   Stage.Buttons.registerShareButton({
     'label': messages['label'],
@@ -22,13 +24,15 @@ export default function(): void {
         onMessage: (message: { iframe: string }) => {
           Streams.addStream({
             'title': 'Shared Figma file',
-            'imageUrl': 'toto',
+            'imageUrl': logoFigma,
             'template': `
               ${message.iframe}
               <style type="text/css">
                 html,
                 body {
                   height: 100%;
+                  margin: 0;
+                  padding: 0;
               }
               </style>
             `,
