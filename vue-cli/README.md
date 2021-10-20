@@ -19,6 +19,14 @@ module.exports = {
 }
 ```
 
+## The APIs used
+
+### `Modal.showIframe()`
+
+This API is used to display a modal with custom HTML content.
+Useful for many use cases including : forms, call to actions, information box, etc
+
+Find out more about this API [here](https://developers.livestorm.co/docs/modal#showiframe).
 
 ## Requirements
 
