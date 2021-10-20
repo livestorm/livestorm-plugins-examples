@@ -1,0 +1,45 @@
+# Livestorm plugin Vue CLI
+
+![Vue CLI example](https://github.com/livestorm/livestorm-plugins-examples/blob/master/vue-cli/example.png?raw=true)
+
+The goal of this plugin is to show that it is possible to use Vue CLI inside the project in order to benefit its advantages.
+
+If you are interested in building a plugin using Vue CLI, we recommend you to start with a fresh install of a Vue CLI project since you will probably want to customize it and dependencies will be the lastest ones.
+
+If you do so, don't forget to disable the file name hashing option as explained in the [documentation](https://developers.livestorm.co/docs/templating#disable-the-file-name-hashing-option)
+
+```
+// vue.config.js
+
+/**
+ * @type {import('@vue/cli-service').ProjectOptions}
+ */
+module.exports = {
+  "filenameHashing": false,
+}
+```
+
+
+## Requirements
+
+- NodeJS (any recent version >12 will do)
+- npm
+- yarn (this is optionnal but below commands use it)
+
+## Getting started
+
+First off, install the Livestorm plugin CLI : 
+
+```
+yarn global add @livestorm/cli
+```
+
+Then create an `environments.json` file at the root and fill in your credentials following [this guide](https://developers.livestorm.co/docs/managing-environments).
+
+Then run :
+```
+yarn
+livestorm publish
+```
+
+And voilà !
