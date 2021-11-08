@@ -2,9 +2,9 @@
 
 ![Vue CLI example](https://github.com/livestorm/livestorm-plugins-examples/blob/master/vue-cli/example.png?raw=true)
 
-The goal of this plugin is to show that it is possible to use Vue CLI inside the project in order to benefit its advantages.
+The goal of this plugin is to show that it is possible to use Vue CLI inside a Livestorm in order to benefit from its advantages.
 
-If you are interested in building a plugin using Vue CLI, we recommend you to start with a fresh install of a Vue CLI project since you will probably want to customize it and dependencies will be the lastest ones.
+If you are interested in building a plugin using Vue CLI, we recommend you to start with a fresh install of a Vue CLI project since you will probably want to customize it.
 
 If you do so, don't forget to disable the file name hashing option as explained in the [documentation](https://developers.livestorm.co/docs/templating#disable-the-file-name-hashing-option)
 
